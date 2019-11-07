@@ -1,22 +1,71 @@
 .App {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-between;
+  margin-top: 10vh;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+section {
+  width: 35vw;
+  height: 35vw;
+  border-radius: 7px;
+  background: #ffffff;
+  border: 1px solid #efefef;
+  box-shadow: 0 2px 5px rgba(0,0,0,.4);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+aside {
+  margin-left: 10px;
+  padding: 5vh;
+  border-top-radius: 7px;
+  background: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+  0 8px 0 -3px #f6f6f6,
+  0 9px 1px -3px rgba(0, 0, 0, 0.2),
+  0 16px 0 -6px #f6f6f6,
+  0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
-.App-link {
-  color: #09d3ac;
+.App-file {
+  padding: 5px;
+  border:1px solid #78C3F3;
+  background: #AADFFD;
+  color: #1E88C7;
+  border-radius: 4px;
+  text-align:center;
+  font-size: 14px;
+}
+
+.App-file > input[type=file] {
+  display: none;
+}
+
+.App-file > label {
+  cursor: pointer;
+}
+
+.App-file:hover {
+  cursor: pointer;
+}
+
+.App-file:active {
+  border: 1px solid #efefef;
+}
+
+.App-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+}
+
+.App-preview {
+  height: 10vmin;
+}
+
+@media (max-width: 430px) {
+  footer {
+    height: 100px;
+  }
 }

@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import  { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducer from './reducers'
+import FileChooser from './containers/FileChooser';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const store = createStore(reducer);
+
+const App = () => (
+  <Provider store = { store }>
+      <article className = "App">
+          <section>
+              <img id="show-img" draggable="true" src={require('./default.jpg')} className="App-img" alt="showImg"/>
+          </section>
+          <aside>
+              <FileChooser/>
+              <p>
+                  <button> 开始 </button>
+                  <button> 自动 </button>
+                  <button> 计时 </button>
+                  <button> 步数 </button>
+              </p>
+          </aside>
+      </article>
+  </Provider>
+);
 
 export default App;
