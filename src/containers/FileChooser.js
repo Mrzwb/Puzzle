@@ -1,21 +1,15 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import FileChooser from '../components/FileChooser';
+import { PuzzleActions } from '../actions';
+import { chooseImg } from '../util/ImgUtils';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     choosePicture: (event) => {
-        const imgs = document.querySelectorAll("#show-img");
-        const file = event.target.files[0];
-        if (window.FileReader) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = function (e) {
-                imgs.forEach(img => img.src = e.target.result);
-            };
-        } else {
-            const url = window.url || window.webkitURL;
-            const data = url.createObjectURL(file);
-            imgs.forEach(img => img.src = data);
-        }
+        let images = document.querySelectorAll("#show-img");
+        chooseImg(event).then( data => {
+            images.forEach(img => img.src = data );
+            dispatch(PuzzleActions.loadImg(data));
+        });
     }
 })
 

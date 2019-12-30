@@ -1,0 +1,29 @@
+.chooser-file {
+    padding: 5px;
+    border:1px solid #78C3F3;
+    background: #AADFFD;
+    color: #1E88C7;
+    border-radius: 4px;
+    text-align:center;
+    font-size: 14px;
+}
+
+.chooser-file > input[type=file] {
+    display: none;
+}
+
+.chooser-file > label {
+    cursor: pointer;
+}
+
+.chooser-file:hover {
+    cursor: pointer;
+}
+
+.chooser-file:active {
+    border: 1px solid #efefef;
+}
+
+.chooser-preview {
+    height: 15vmin;
+}
