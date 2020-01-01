@@ -25,13 +25,15 @@ class Puzzle extends Component {
         document.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.picture !== this.props.picture || prevProps.size !== this.props.size) {
             this.clipImg();
         }
-
-        if (isNotEqual(prevProps.startArr, this.props.startArr)){
+        if (isNotEqual(prevProps.startArr, this.props.startArr)) {
             this.start();
+        }
+        if (prevProps.resetToggle !== this.props.resetToggle ) {
+            this.reset();
         }
     }
 
@@ -142,7 +144,6 @@ class Puzzle extends Component {
         this.setState({
             pieces: pieces,
         });
-
     }
 
     /**
@@ -153,9 +154,11 @@ class Puzzle extends Component {
         pieces.forEach( (block, index) => {
             block.x = origin[index][0];
             block.y = origin[index][1];
-        })
+        });
+        this.setState({
+            pieces: pieces,
+        });
     }
-
 
     render() {
         const { pieces, count } = this.state;

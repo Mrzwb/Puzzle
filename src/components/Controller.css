@@ -1,0 +1,34 @@
+.controller > button {
+    display: inline-block;
+    outline: 0 none;
+    margin: 1px;
+    height: 28px;
+    width: 50px;
+    background: #78C3F3;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    color: #1E88C7;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+.controller > button:hover {
+    cursor: pointer;
+}
+
+.controller > button:active {
+    box-shadow: 0 1px 3px #d7d8d9 inset;
+}
+
+.controller > button:disabled {
+    display: inline-block;
+    outline: 0 none;
+    margin: 1px;
+    height: 28px;
+    width: 50px;
+    background: #d7d8d9;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    color: #ababab;
+    font-size: 12px;
+}

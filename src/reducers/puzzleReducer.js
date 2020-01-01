@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { randomArr, reversedOrder } from '../util/ArrUtils'
+import { randomArr } from '../util/ArrUtils'
 
 const defaultPicture = require('../default.jpg');
 
@@ -7,6 +7,7 @@ const initialState = {
     picture: defaultPicture,
     size: 3,
     startArr: [],
+    resetToggle: false  // 复位开关
 }
 
 export default function puzzleReducer(state = initialState, action) {
@@ -21,15 +22,19 @@ export default function puzzleReducer(state = initialState, action) {
                 ...state,
                 size: action.size,
             }
-
         case types.PUZZLE_START:
             const { size } = state;
-            let startArr = randomArr(Math.pow(size,2)); //[5,4,6,1,2,3,8,7];
+            let startArr = randomArr(Math.pow(size,2));
             return {
                 ...state,
                startArr: startArr,
             }
-
+        case types.PUZZLE_RESET:
+            const { resetToggle } = state;
+            return {
+                ...state,
+                resetToggle: ~resetToggle,
+            }
         default:
             return state
     }

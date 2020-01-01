@@ -1,10 +1,16 @@
 import { connect } from 'react-redux'
 import Controller from '../components/Controller';
-import { PuzzleActions } from "../actions";
+import { PuzzleActions, ClockActions } from "../actions";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onStart: (event) => {
+    onStart: event => {
         dispatch(PuzzleActions.onStart());
+        dispatch(ClockActions.start());
+    },
+
+    onReset: event => {
+        dispatch(PuzzleActions.onReset());
+        dispatch(ClockActions.stop());
     }
 })
 

@@ -8,8 +8,6 @@ import Puzzle from './containers/Puzzle';
 import ModeChooser from './containers/ModeChooser';
 import Controller from './containers/Controller';
 
-//import ModeChooser from './components/ModeChooser'
-
 const store = createStore(reducers);
 
 const App = () => (
@@ -23,19 +21,7 @@ const App = () => (
               <p>
                   <ModeChooser/>
               </p>
-              <p>
-                  <Controller/>
-               {/*   <button onClick={e => {
-                      console.info(  );
-                      console.info(   Math.random())
-                  }
-                }> 开始 </button>
-                  <button> 自动 </button>
-                  <button> 计时 </button>
-                  <button> 步数 </button>
-                  */}
-
-              </p>
+              <Controller/>
           </aside>
       </article>
   </Provider>
