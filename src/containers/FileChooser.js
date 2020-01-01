@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FileChooser from '../components/FileChooser';
-import { PuzzleActions } from '../actions';
+import {ClockActions, PuzzleActions, StepsActions} from '../actions';
 import { chooseImg } from '../util/ImgUtils';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -9,6 +9,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         chooseImg(event).then( data => {
             images.forEach(img => img.src = data );
             dispatch(PuzzleActions.loadImg(data));
+            dispatch(ClockActions.stop());
+            dispatch(StepsActions.show(false));
         });
     }
 })
