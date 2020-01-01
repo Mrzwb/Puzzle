@@ -6,3 +6,7 @@ export const PUZZLE_RESET = 'RESET';
 
 export const CLOCK_START = 'CLOCK_START';
 export const CLOCK_STOP = 'CLOCK_STOP';
+export const CLOCK_PAUSE = 'CLOCK_PAUSE';
+
+export const STEPS_SHOW = 'STEPS_SHOW';
+export const STEPS_COUNT = 'STEPS_COUNT';

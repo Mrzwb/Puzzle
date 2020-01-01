@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { clipImage } from '../util/ImgUtils';
-import { isNotEqual } from '../util/ArrUtils';
+import {isEqual, isNotEqual} from '../util/ArrUtils';
 import PropTypes from 'prop-types';
 import './Puzzle.css';
 
@@ -28,8 +28,9 @@ class Puzzle extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.picture !== this.props.picture || prevProps.size !== this.props.size) {
             this.clipImg();
+            this.props.displaySteps();
         }
-        if (isNotEqual(prevProps.startArr, this.props.startArr)) {
+        if (isNotEqual(prevProps.startArr, this.props.startArr) && this.isStarting()) {
             this.start();
         }
         if (prevProps.resetToggle !== this.props.resetToggle ) {
@@ -75,6 +76,13 @@ class Puzzle extends Component {
             this.setState({
                 pieces: newPieces,
             });
+
+            this.props.countSteps();
+
+            if (this.isWinner() && this.isStarting()) {
+                alert('YOU WIN!');
+                this.props.stopClock();
+            }
         }
     }
 
@@ -128,6 +136,9 @@ class Puzzle extends Component {
         moveBlock.y ^= emptyBlock.y;
     }
 
+    isStarting() {
+        return !isEqual([],this.props.startArr);
+    }
 
     /**
      * 打乱
@@ -158,6 +169,20 @@ class Puzzle extends Component {
         this.setState({
             pieces: pieces,
         });
+    }
+
+    /**
+     * 获胜
+     */
+    isWinner() {
+        const { pieces, origin } = this.state;
+        let success = true;
+        pieces.forEach( (block, index) => {
+            if(block.x !== origin[index][0] || block.y !== origin[index][1]) {
+                success = false;
+            }
+        });
+        return success;
     }
 
     render() {
@@ -195,6 +220,9 @@ class Puzzle extends Component {
 Puzzle.propTypes = {
     picture: PropTypes.string.isRequired,
     size:  PropTypes.number.isRequired,
+    countSteps: PropTypes.func,
+    displaySteps: PropTypes.func,
+
 }
 
 export default Puzzle;

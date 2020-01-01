@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 class Clock extends Component {
 
@@ -42,6 +42,10 @@ class Clock extends Component {
 
     stop() {
         clearInterval(this.timerID);
+        this.clear();
+    }
+
+    clear() {
         this.setState({
             hour: 0,
             minute: 0,
@@ -49,18 +53,26 @@ class Clock extends Component {
         });
     }
 
+    pause() {
+        clearInterval(this.timerID);
+    }
+
     componentDidUnMount() {
         clearInterval(this.timerID);
     }
 
     componentDidUpdate(prevProps) {
-        const { displayStatus } = this.props;
+        const { displayStatus, pauseStatus } = this.props;
         if (prevProps.displayStatus !== displayStatus) {
-            if  (displayStatus) {
+            if (displayStatus) {
                 this.start();
             } else {
                 this.stop();
             }
+        }
+
+        if (prevProps.pauseStatus !== pauseStatus) {
+            this.pause();
         }
     }
 
@@ -81,6 +93,7 @@ class Clock extends Component {
 
 const mapStateToProps = state => ({
     displayStatus: state.clockReducer.displayStatus,
+    pauseStatus: state.clockReducer.pauseStatus,
 });
 
 export default connect(mapStateToProps, null)(Clock);

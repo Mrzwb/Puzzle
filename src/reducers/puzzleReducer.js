@@ -7,7 +7,7 @@ const initialState = {
     picture: defaultPicture,
     size: 3,
     startArr: [],
-    resetToggle: false  // 复位开关
+    resetToggle: 0  // 复位开关
 }
 
 export default function puzzleReducer(state = initialState, action) {
@@ -33,6 +33,7 @@ export default function puzzleReducer(state = initialState, action) {
             const { resetToggle } = state;
             return {
                 ...state,
+                startArr: [],
                 resetToggle: ~resetToggle,
             }
         default:

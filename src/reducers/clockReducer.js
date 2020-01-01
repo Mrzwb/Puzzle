@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
     displayStatus: false,
+    pauseStatus: false,
 }
 
 export default function clockReducer(state = initialState, action) {
@@ -16,6 +17,13 @@ export default function clockReducer(state = initialState, action) {
                 ...state,
                 displayStatus: false
             }
+        case types.CLOCK_PAUSE:
+            const { pauseStatus } = state;
+            return {
+                ...state,
+                pauseStatus: !pauseStatus
+            }
+
         default:
             return state
     }

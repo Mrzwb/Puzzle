@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Puzzle from '../components/Puzzle';
+import { ClockActions ,StepsActions } from "../actions";
 
 const mapStateToProps = state => ({
     picture: state.puzzleReducer.picture,
@@ -8,4 +9,18 @@ const mapStateToProps = state => ({
     resetToggle: state.puzzleReducer.resetToggle,
 });
 
-export default connect(mapStateToProps, null)(Puzzle);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    countSteps: () => {
+        dispatch(StepsActions.count());
+    },
+
+    displaySteps: () => {
+        dispatch(StepsActions.show(false));
+    },
+
+    stopClock: () => {
+        dispatch(ClockActions.pause());
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Puzzle);

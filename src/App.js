@@ -3,10 +3,13 @@ import './App.css';
 import  { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
-import FileChooser from './containers/FileChooser';
-import Puzzle from './containers/Puzzle';
-import ModeChooser from './containers/ModeChooser';
-import Controller from './containers/Controller';
+import {
+    Puzzle,
+    FileChooser,
+    ModeChooser,
+    Controller,
+    Steps,
+} from './containers';
 
 const store = createStore(reducers);
 
@@ -18,10 +21,10 @@ const App = () => (
           </section>
           <aside>
               <FileChooser/>
-              <p>
-                  <ModeChooser/>
-              </p>
+              <ModeChooser/>
+              <p/>
               <Controller/>
+              <Steps/>
           </aside>
       </article>
   </Provider>
